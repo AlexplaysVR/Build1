@@ -61,6 +61,7 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
+	//Pros Device Control Initialization
 	pros::Motor fr_motor(FR_MOTOR_PORT);
 	pros::Motor fl_motor(FL_MOTOR_PORT, true);
 	pros::Motor rr_motor(BR_MOTOR_PORT);
@@ -125,6 +126,7 @@ void autonomous() {
  */
 
 void opcontrol() {
+	//Pros Device Control Initialization
 	pros::Controller master(pros::E_CONTROLLER_MASTER);
 	pros::Motor fr_motor(FR_MOTOR_PORT);
 	pros::Motor fl_motor(FL_MOTOR_PORT, true);
@@ -136,7 +138,7 @@ void opcontrol() {
 	pros::Vision vision_sensor(VISION_SENSOR_PORT);
 	pros::Distance distance_sensor(DISTANCE_SENSOR_PORT);
 
-
+			//Motor Break Modes
 	arm_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	claw_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	
