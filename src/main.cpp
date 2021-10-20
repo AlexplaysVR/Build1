@@ -28,7 +28,9 @@
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
+
 	selector::init();
+
 }
 
 /**
@@ -91,22 +93,34 @@ void autonomous() {
 
 	}
 	if(selector::auton == 2){
+
 		printf("Red Right");
+
 	}
 	if(selector::auton == 3){
+
 		printf("Red Disabled");
+
 	}
 	if(selector::auton == -1){
+
 		printf("Blue Left");
+
 	}
 	if(selector::auton == -2){
+
 		printf("Blue Right");
+
 	}
 	if(selector::auton == -3){
+
 		printf("Blue Disabled");
+
 	}
 	if(selector::auton == 0){
+
 		printf("Skills");
+
 	}
 
 }
