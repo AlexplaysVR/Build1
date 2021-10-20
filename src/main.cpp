@@ -1,7 +1,8 @@
 #include "main.h"
 #include "pros/apix.h"
 #include "autoSelect/selection.h"	
-//Definitions
+//Port Definitions
+
 //Motors
 #define FR_MOTOR_PORT 1
 #define FL_MOTOR_PORT 2
@@ -26,7 +27,6 @@
  * All other competition modes are blocked by initialize; it is recommended
  * to keep execution time for this mode under a few seconds.
  */
-//Sensors
 void initialize() {
 	selector::init();
 }
