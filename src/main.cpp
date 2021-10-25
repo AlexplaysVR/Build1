@@ -1,4 +1,5 @@
 #include "main.h"
+#include "okapi/api.hpp"
 #include "pros/apix.h"
 #include "autoSelect/selection.h"	
 //Port Definitions
@@ -19,7 +20,7 @@
 
 //Sensors
 #define VISION_SENSOR_PORT 20
-#define DISTANCE_SENSOR_PORT 7
+#define DISTANCE_SENSOR_PORT 4
 #define INERTIA_SENSOR_PORT 11
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -73,24 +74,35 @@ void autonomous() {
 	pros::Imu inertia_sensor(INERTIA_SENSOR_PORT);
 	pros::Vision vision_sensor(VISION_SENSOR_PORT);
 	pros::Distance distance_sensor(DISTANCE_SENSOR_PORT);
+	//Motor Break Modes
+	arm_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+	claw_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
 	if(selector::auton == 1){
 		printf("Red Left");
+		while(true){
+			if(distance_sensor.get() > 250){
+				fl_motor.move_velocity(50);
+				fr_motor.move_velocity(50);
+				rl_motor.move_velocity(50);
+				rr_motor.move_velocity(50);
+			}
 
-		if(distance_sensor.get() > 5){
-			fl_motor.move_velocity(10);
-			fr_motor.move_velocity(10);
-			rl_motor.move_velocity(10);
-			rr_motor.move_velocity(10);
+			else if(distance_sensor.get() < 150){
+				fl_motor.move_velocity(-50);
+				fr_motor.move_velocity(-50);
+				rl_motor.move_velocity(-50);
+				rr_motor.move_velocity(-50);
+			}
+			else{
+				fl_motor.move_velocity(0);
+				fr_motor.move_velocity(0);
+				rl_motor.move_velocity(0);
+				rr_motor.move_velocity(0);
+			}
+
 		}
-
-		else{
-			fl_motor.move_velocity(0);
-			fr_motor.move_velocity(0);
-			rl_motor.move_velocity(0);
-			rr_motor.move_velocity(0);
-		}
-
+		
 	}
 	if(selector::auton == 2){
 
